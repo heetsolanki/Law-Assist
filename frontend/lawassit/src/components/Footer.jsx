@@ -1,37 +1,65 @@
+import { Scale } from "lucide-react";
+
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 px-6">
-        <div>
-          <h3 className="text-white font-bold text-xl mb-4">LawAssist</h3>
-          <p>Empowering consumers with reliable legal guidance.</p>
+    <footer className="footer">
+      <div className="container-custom">
+
+        <div className="footer-grid">
+
+          {/* Brand */}
+          <div>
+            <div className="footer-brand">
+              <Scale size={22} className="footer-logo" />
+              LawAssist
+            </div>
+
+            <p className="footer-description">
+              Empowering consumers with accessible legal guidance.
+              Know your rights and take action with confidence.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="footer-heading">QUICK LINKS</h4>
+            <ul className="footer-links">
+              <li>Home</li>
+              <li>Explore Rights</li>
+              <li>Submit Query</li>
+              <li>About</li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="footer-heading">LEGAL</h4>
+            <ul className="footer-links">
+              <li>Privacy Policy</li>
+              <li>Terms & Conditions</li>
+              <li>Disclaimer</li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="footer-heading">CONTACT</h4>
+            <ul className="footer-links">
+              <li>support@lawassist.com</li>
+              <li>+1 (555) 123-4567</li>
+              <li>123 Legal Avenue, Suite 400</li>
+              <li>New York, NY 10001</li>
+            </ul>
+          </div>
+
         </div>
 
-        <div>
-          <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-          <ul className="space-y-2 text-sm">
-            <li>Home</li>
-            <li>Submit Query</li>
-            <li>Experts</li>
-          </ul>
+        <div className="footer-divider"></div>
+
+        <div className="footer-bottom">
+          © 2026 LawAssist. All rights reserved.
         </div>
 
-        <div>
-          <h4 className="text-white font-semibold mb-4">Legal</h4>
-          <ul className="space-y-2 text-sm">
-            <li>Privacy Policy</li>
-            <li>Terms & Conditions</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-white font-semibold mb-4">Contact</h4>
-          <p>support@lawassist.com</p>
-        </div>
-      </div>
-
-      <div className="text-center text-sm mt-10 border-t border-gray-700 pt-6">
-        © 2026 LawAssist. All Rights Reserved.
       </div>
     </footer>
   );
