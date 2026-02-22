@@ -22,7 +22,6 @@ function Navbar() {
 
           <span className="nav-link">Experts</span>
           <span className="nav-link">About</span>
-          <span className="nav-link">Contact</span>
 
           <button className="nav-btn nav-login">
             Login
