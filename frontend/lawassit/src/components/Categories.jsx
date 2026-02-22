@@ -57,7 +57,7 @@ function Categories() {
               Product Defects
             </h3>
             <p className="feature-text">
-              Manufacturing defects and warranty claims.
+              Manufacturing defects, warranty claims, and faulty goods.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ function Categories() {
               Insurance Complaints
             </h3>
             <p className="feature-text">
-              Claim rejections and unfair policy practices.
+              Claim rejections, delays, and unfair policy practices.
             </p>
           </div>
 
@@ -81,7 +81,7 @@ function Categories() {
               Real Estate Issues
             </h3>
             <p className="feature-text">
-              Property disputes and tenant rights.
+              Property disputes, builder defaults, and tenant rights.
             </p>
           </div>
 
