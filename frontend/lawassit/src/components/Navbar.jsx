@@ -6,19 +6,20 @@ function Navbar() {
       <nav className="navbar">
 
         {/* LEFT LINKS */}
-        <div className="nav-left">
+        <div className="nav-links">
           <span className="nav-link">Home</span>
           <span className="nav-link">Explore Rights</span>
           <span className="nav-link">Submit Query</span>
         </div>
 
         {/* CENTER LOGO */}
-        <div className="nav-logo">
+        <div className="text-[#0A1F44] hover:text-[#C9A227] transition cursor-pointer">
           <Scale size={28} />
         </div>
 
         {/* RIGHT LINKS + BUTTONS */}
-        <div className="nav-right">
+        <div className="nav-links">
+
           <span className="nav-link">Experts</span>
           <span className="nav-link">About</span>
           <span className="nav-link">Contact</span>
@@ -30,6 +31,7 @@ function Navbar() {
           <button className="nav-btn nav-register">
             Register
           </button>
+
         </div>
 
       </nav>
