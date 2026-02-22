@@ -7,6 +7,7 @@
 body {
   @apply font-sans bg-white text-gray-800;
 }
+/* ================= LAYOUT ================= */
 
 .container-custom {
   @apply max-w-7xl mx-auto px-6;
@@ -16,7 +17,9 @@ body {
   @apply py-24;
 }
 
-/* ================= NAVBAR ================= */
+/* ================= HOME PAGE ================= */
+
+/* NAVBAR */
 
 .nav-wrapper {
   @apply fixed top-8 left-1/2 -translate-x-1/2 w-[92%] max-w-[1300px] z-50;
@@ -27,11 +30,15 @@ body {
 }
 
 .nav-links {
-  @apply flex items-center gap-8;
+  @apply flex items-center gap-8 cursor-pointer;
 }
 
 .nav-link {
-  @apply text-sm font-medium text-[#0A1F44] relative transition cursor-pointer;
+  @apply text-sm font-medium text-[#0A1F44] relative transition;
+}
+
+.nav-link {
+  @apply text-sm font-medium text-[#0A1F44] transition relative cursor-pointer;
 }
 
 .nav-link:hover {
@@ -59,14 +66,12 @@ body {
 }
 
 .nav-login {
-  @apply border border-[#0A1F44] text-[#0A1F44] hover:bg-[#0A1F44] hover:text-white transition;
+  @apply border border-[#0A1F44] text-[#0A1F44] hover:bg-[#0A1F44] hover:text-white;
 }
 
 .nav-register {
-  @apply bg-[#0A1F44] text-white hover:bg-[#123A6F] transition;
+  @apply bg-[#0A1F44] text-white hover:bg-[#123A6F];
 }
-
-/* ================= HOME PAGE ================= */
 
 /* HERO */
 
@@ -110,7 +115,7 @@ body {
   @apply w-10 h-10 text-[#0A1F44] mb-4;
 }
 
-/* ================= FEATURES ================= */
+/* FEATURES */
 
 .features-section {
   @apply bg-[#f6f8fb] section-padding;
@@ -121,7 +126,7 @@ body {
 }
 
 .feature-card {
-  @apply bg-white px-10 py-8 rounded-2xl border border-gray-200 shadow-sm transition hover:border-[#C9A227] hover:shadow-lg;
+  @apply bg-white px-10 py-8 rounded-2xl border border-gray-400 shadow-sm transition hover:border-[#C9A227] hover:shadow-lg;
 }
 
 .feature-icon {
@@ -129,7 +134,7 @@ body {
 }
 
 .feature-card:hover .feature-icon {
-  @apply bg-[#0A1F44] text-white -translate-y-1;
+  @apply bg-[#0A1F44] text-white translate-y-[-4px];
 }
 
 .feature-title {
@@ -140,7 +145,7 @@ body {
   @apply text-sm text-gray-600 leading-relaxed;
 }
 
-/* ================= HOW IT WORKS ================= */
+/* HOW IT WORKS */
 
 .how-section {
   @apply bg-white section-padding text-center;
@@ -170,7 +175,7 @@ body {
   @apply text-sm text-gray-600;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 .footer {
   @apply bg-[#0A1F44] pt-24 pb-10 text-gray-300;
@@ -216,7 +221,6 @@ body {
   @apply pt-24 pb-24 relative overflow-hidden;
   background-color: #f9fafc;
 }
-
 .about-hero::before {
   content: "";
   position: absolute;
@@ -247,8 +251,6 @@ body {
   @apply text-lg text-gray-600 max-w-lg leading-relaxed;
 }
 
-/* HERO GRAPHIC RINGS */
-
 .about-hero-graphic {
   @apply relative flex items-center justify-center;
 }
@@ -273,12 +275,18 @@ body {
 }
 
 .hero-circle-main svg {
-  @apply w-8 h-8 text-[#0A1F44];
+  @apply w-16 h-16 text-[#C9A227];
 }
+
+/* Gold badge */
 
 .hero-circle-badge {
   @apply absolute top-0 right-0 w-14 h-14 bg-[#C9A227] rounded-full flex items-center justify-center shadow-xl z-20;
   transform: translate(30%, -30%);
+}
+
+.hero-circle-badge svg {
+  @apply w-6 h-6 text-[#0A1F44];
 }
 
 /* WHO WE ARE */
@@ -290,6 +298,8 @@ body {
 .who-layout {
   @apply container-custom grid grid-cols-1 lg:grid-cols-2 gap-20 items-center;
 }
+
+/* Left Side */
 
 .who-title {
   @apply text-4xl font-semibold text-[#0A1F44];
@@ -303,8 +313,10 @@ body {
   @apply text-gray-600 leading-relaxed mb-6 max-w-xl;
 }
 
+/* Right Card */
+
 .who-card {
-  @apply bg-white rounded-2xl shadow-lg p-10;
+  @apply bg-white rounded-2xl shadow-lg p-10 relative size-full;
   border-top: 4px solid #C9A227;
 }
 
@@ -316,7 +328,15 @@ body {
   @apply w-8 h-8 text-[#C9A227];
 }
 
-/* ================= MISSION ================= */
+.who-card-title {
+  @apply text-xl font-semibold text-[#0A1F44] mb-4;
+}
+
+.who-card-text {
+  @apply text-gray-600 leading-relaxed;
+}
+
+/* MISSION */
 
 .mission-section {
   @apply bg-[#0A1F44] section-padding text-center;
@@ -338,8 +358,10 @@ body {
   @apply container-custom grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-10 mt-20;
 }
 
+/* Mission Card */
+
 .mission-card {
-  @apply bg-[#f3f4f6] rounded-2xl p-10 text-left shadow-lg;
+  @apply bg-[#f3f4f6] rounded-2xl p-10 text-left shadow-lg relative;
   border-top: 4px solid #C9A227;
 }
 
@@ -359,15 +381,14 @@ body {
   @apply text-gray-600 leading-relaxed text-sm;
 }
 
-/* ================= OFFER ================= */
+/* WHAT WE OFFER */
 
 .offer-section {
   @apply bg-[#f4f6f9] section-padding text-center;
 }
 
-.offer-section h3,
-.offer-section p {
-  @apply text-left;
+.offer-section h3, p {
+  @apply text-left
 }
 
 .offer-title {
@@ -386,10 +407,10 @@ body {
   @apply container-custom grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20;
 }
 
-/* ================= DEVELOPERS ================= */
+/* DEVELOPERS */
 
 .dev-section {
-  @apply bg-white section-padding text-center;
+  @apply bg-[#fff] section-padding text-center;
 }
 
 .dev-title {
@@ -403,6 +424,8 @@ body {
 .dev-layout {
   @apply container-custom grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mt-20 text-left;
 }
+
+/* LEFT SIDE */
 
 .dev-icon-box {
   @apply w-16 h-16 bg-[#0A1F44] rounded-2xl flex items-center justify-center mb-6;
@@ -427,6 +450,8 @@ body {
 .dev-badge {
   @apply px-5 py-2 rounded-full bg-white border border-gray-300 text-sm text-[#0A1F44];
 }
+
+/* RIGHT CARD */
 
 .dev-card {
   @apply bg-white rounded-2xl shadow-xl p-10;
