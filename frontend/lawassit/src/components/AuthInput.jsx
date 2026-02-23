@@ -5,6 +5,7 @@ function AuthInput({
   value,
   onChange,
   error,
+  placeholder,
   children
 }) {
   return (
@@ -17,11 +18,14 @@ function AuthInput({
           name={name}
           value={value}
           onChange={onChange}
+          placeholder={placeholder}
         />
         {children}
       </div>
 
-      {error && <p className="input-error">{error}</p>}
+      {error && (
+        <p className="input-error">{error}</p>
+      )}
     </div>
   );
 }

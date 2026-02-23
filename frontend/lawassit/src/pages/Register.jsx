@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Scale, CheckCircle, XCircle, EyeOff, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthInput from "../components/AuthInput";
@@ -10,6 +11,8 @@ import "../styles/auth.css";
 function Register() {
   const [role, setRole] = useState("consumer");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+const [showSuccess, setShowSuccess] = useState(false);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -19,6 +22,26 @@ function Register() {
   });
 
   const [errors, setErrors] = useState({});
+  const passwordsMatch =
+    form.password === form.confirmPassword;
+
+  // 👇 ADD useEffect HERE
+  useEffect(() => {
+    if (
+      form.confirmPassword &&
+      form.password !== form.confirmPassword
+    ) {
+      setErrors(prev => ({
+        ...prev,
+        confirmPassword: "Passwords do not match"
+      }));
+    } else {
+      setErrors(prev => ({
+        ...prev,
+        confirmPassword: ""
+      }));
+    }
+  }, [form.password, form.confirmPassword]);
 
   const handleChange = (e) => {
     setForm({
@@ -39,8 +62,6 @@ function Register() {
     special: /[@$!%*?&]/.test(form.password),
   };
   const strengthScore = Object.values(passwordChecks).filter(Boolean).length;
-  const passwordsMatch =
-    form.password && form.password === form.confirmPassword;
   const formValid =
     form.fullName.trim() &&
     emailValid &&
@@ -67,7 +88,20 @@ function Register() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form valid — ready to send to backend");
+      setShowSuccess(true);
+
+// Clear form
+setForm({
+  fullName: "",
+  email: "",
+  password: "",
+  confirmPassword: ""
+});
+
+// Redirect after 3 seconds
+setTimeout(() => {
+  navigate("/dashboard");
+}, 3000);
     }
   };
 
@@ -148,6 +182,7 @@ function Register() {
 
   <AuthInput
   label="Password"
+  placeholder={'Enter your password'}
   type={showPassword ? "text" : "password"}
   name="password"
   value={form.password}
@@ -236,6 +271,16 @@ function Register() {
                 ),
               )}
             </div>
+            {showSuccess && (
+  <div className="popup-overlay">
+    <div className="popup-card">
+      <CheckCircle size={50} className="popup-icon" />
+      <p className="popup-text">
+        Registration Successful!
+      </p>
+    </div>
+  </div>
+)}
           </div>
         </div>
       </div>

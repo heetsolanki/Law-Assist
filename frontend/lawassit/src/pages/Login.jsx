@@ -1,5 +1,6 @@
-import { useState } from "react"; // ✅ MISSING IMPORT
-import { Scale } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Scale, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthInput from "../components/AuthInput";
 import AuthButton from "../components/AuthButton";
@@ -8,6 +9,8 @@ import Footer from "../components/Footer";
 import "../styles/auth.css";
 
 function Login() {
+    const navigate = useNavigate();
+const [showSuccess, setShowSuccess] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -42,7 +45,16 @@ function Login() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Login form valid — ready for backend");
+      setShowSuccess(true);
+
+setForm({
+  email: "",
+  password: ""
+});
+
+setTimeout(() => {
+  navigate("/dashboard");
+}, 3000);
     }
   };
 
@@ -115,6 +127,16 @@ function Login() {
                 </Link>
               </p>
             </form>
+            {showSuccess && (
+  <div className="popup-overlay">
+    <div className="popup-card">
+      <CheckCircle size={50} className="popup-icon" />
+      <p className="popup-text">
+        Login Successful!
+      </p>
+    </div>
+  </div>
+)}
           </div>
         </div>
       </div>
