@@ -46,10 +46,8 @@ function Footer() {
           <div>
             <h4 className="footer-heading">CONTACT</h4>
             <ul className="footer-links">
-              <li>support@lawassist.com</li>
-              <li>+1 (555) 123-4567</li>
-              <li>123 Legal Avenue, Suite 400</li>
-              <li>New York, NY 10001</li>
+              <li>lawassist@gmail.com</li>
+              <li>Mumabi, India</li>
             </ul>
           </div>
 

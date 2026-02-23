@@ -34,7 +34,9 @@ function Navbar() {
             Login
           </Link>
 
-          <Link to='/register' className="nav-btn nav-register">Register</Link>
+          <Link to="/register" className="nav-btn nav-register">
+            Register
+          </Link>
         </div>
 
         {/* HAMBURGER */}
@@ -55,9 +57,14 @@ function Navbar() {
           About
         </Link>
 
-        <Link to="/login" className="nav-btn nav-login w-full text-center">Login</Link>
+        <Link to="/login" className="nav-btn nav-login w-full text-center">
+          Login
+        </Link>
 
-        <Link to="/register" className="nav-btn nav-register w-full text-center">
+        <Link
+          to="/register"
+          className="nav-btn nav-register w-full text-center"
+        >
           Register
         </Link>
       </div>

@@ -12,7 +12,7 @@ function Register() {
   const [role, setRole] = useState("consumer");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -22,23 +22,19 @@ const [showSuccess, setShowSuccess] = useState(false);
   });
 
   const [errors, setErrors] = useState({});
-  const passwordsMatch =
-    form.password === form.confirmPassword;
+  const passwordsMatch = form.password === form.confirmPassword;
 
   // 👇 ADD useEffect HERE
   useEffect(() => {
-    if (
-      form.confirmPassword &&
-      form.password !== form.confirmPassword
-    ) {
-      setErrors(prev => ({
+    if (form.confirmPassword && form.password !== form.confirmPassword) {
+      setErrors((prev) => ({
         ...prev,
-        confirmPassword: "Passwords do not match"
+        confirmPassword: "Passwords do not match",
       }));
     } else {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        confirmPassword: ""
+        confirmPassword: "",
       }));
     }
   }, [form.password, form.confirmPassword]);
@@ -70,7 +66,6 @@ const [showSuccess, setShowSuccess] = useState(false);
 
   const strengthPercent = (strengthScore / 5) * 100;
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -90,18 +85,18 @@ const [showSuccess, setShowSuccess] = useState(false);
     if (Object.keys(newErrors).length === 0) {
       setShowSuccess(true);
 
-// Clear form
-setForm({
-  fullName: "",
-  email: "",
-  password: "",
-  confirmPassword: ""
-});
+      // Clear form
+      setForm({
+        fullName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
 
-// Redirect after 3 seconds
-setTimeout(() => {
-  navigate("/dashboard");
-}, 3000);
+      // Redirect after 3 seconds
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
     }
   };
 
@@ -179,26 +174,24 @@ setTimeout(() => {
               />
 
               <div className="password-wrapper">
-
-  <AuthInput
-  label="Password"
-  placeholder={'Enter your password'}
-  type={showPassword ? "text" : "password"}
-  name="password"
-  value={form.password}
-  onChange={handleChange}
-  error={errors.password}
->
-  <button
-    type="button"
-    className="eye-icon"
-    onClick={() => setShowPassword(!showPassword)}
-  >
-    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-  </button>
-</AuthInput>
-
-</div>
+                <AuthInput
+                  label="Password"
+                  placeholder={"Enter your password"}
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  error={errors.password}
+                >
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </AuthInput>
+              </div>
 
               <AuthInput
                 label="Confirm Password"
@@ -272,15 +265,13 @@ setTimeout(() => {
               )}
             </div>
             {showSuccess && (
-  <div className="popup-overlay">
-    <div className="popup-card">
-      <CheckCircle size={50} className="popup-icon" />
-      <p className="popup-text">
-        Registration Successful!
-      </p>
-    </div>
-  </div>
-)}
+              <div className="popup-overlay">
+                <div className="popup-card">
+                  <CheckCircle size={50} className="popup-icon" />
+                  <p className="popup-text">Registration Successful!</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

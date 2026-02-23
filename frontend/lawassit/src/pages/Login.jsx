@@ -9,8 +9,8 @@ import Footer from "../components/Footer";
 import "../styles/auth.css";
 
 function Login() {
-    const navigate = useNavigate();
-const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
+  const [showSuccess, setShowSuccess] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -47,14 +47,14 @@ const [showSuccess, setShowSuccess] = useState(false);
     if (Object.keys(newErrors).length === 0) {
       setShowSuccess(true);
 
-setForm({
-  email: "",
-  password: ""
-});
+      setForm({
+        email: "",
+        password: "",
+      });
 
-setTimeout(() => {
-  navigate("/dashboard");
-}, 3000);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
     }
   };
 
@@ -128,15 +128,13 @@ setTimeout(() => {
               </p>
             </form>
             {showSuccess && (
-  <div className="popup-overlay">
-    <div className="popup-card">
-      <CheckCircle size={50} className="popup-icon" />
-      <p className="popup-text">
-        Login Successful!
-      </p>
-    </div>
-  </div>
-)}
+              <div className="popup-overlay">
+                <div className="popup-card">
+                  <CheckCircle size={50} className="popup-icon" />
+                  <p className="popup-text">Login Successful!</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

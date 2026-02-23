@@ -6,7 +6,7 @@ function AuthInput({
   onChange,
   error,
   placeholder,
-  children
+  children,
 }) {
   return (
     <div className="form-group">
@@ -23,9 +23,7 @@ function AuthInput({
         {children}
       </div>
 
-      {error && (
-        <p className="input-error">{error}</p>
-      )}
+      {error && <p className="input-error">{error}</p>}
     </div>
   );
 }
