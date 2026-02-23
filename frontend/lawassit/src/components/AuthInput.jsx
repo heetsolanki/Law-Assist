@@ -1,8 +1,27 @@
-function AuthInput({ label, type, placeholder }) {
+function AuthInput({
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  error,
+  children
+}) {
   return (
     <div className="form-group">
       <label>{label}</label>
-      <input type={type} placeholder={placeholder} />
+
+      <div className="input-wrapper">
+        <input
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+        />
+        {children}
+      </div>
+
+      {error && <p className="input-error">{error}</p>}
     </div>
   );
 }

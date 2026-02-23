@@ -1,6 +1,12 @@
-function AuthButton({ text }) {
+function AuthButton({ text, disabled }) {
   return (
-    <button type="submit" className="auth-btn">
+    <button
+      type="submit"
+      disabled={disabled}
+      className={`auth-btn ${
+        disabled ? "auth-btn-disabled" : ""
+      }`}
+    >
       {text}
     </button>
   );

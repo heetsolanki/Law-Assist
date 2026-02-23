@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Scale, CheckCircle } from "lucide-react";
+import { Scale, CheckCircle, XCircle, EyeOff, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthInput from "../components/AuthInput";
 import AuthButton from "../components/AuthButton";
@@ -9,6 +9,67 @@ import "../styles/auth.css";
 
 function Register() {
   const [role, setRole] = useState("consumer");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // ===== VALIDATIONS =====
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+
+  const passwordChecks = {
+    length: form.password.length >= 8,
+    upper: /[A-Z]/.test(form.password),
+    lower: /[a-z]/.test(form.password),
+    number: /\d/.test(form.password),
+    special: /[@$!%*?&]/.test(form.password),
+  };
+  const strengthScore = Object.values(passwordChecks).filter(Boolean).length;
+  const passwordsMatch =
+    form.password && form.password === form.confirmPassword;
+  const formValid =
+    form.fullName.trim() &&
+    emailValid &&
+    Object.values(passwordChecks).every(Boolean) &&
+    passwordsMatch;
+
+  const strengthPercent = (strengthScore / 5) * 100;
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let newErrors = {};
+
+    if (!form.fullName.trim()) newErrors.fullName = "Full name is required";
+
+    if (!emailValid) newErrors.email = "Enter a valid email address";
+
+    if (!Object.values(passwordChecks).every(Boolean))
+      newErrors.password = "Password does not meet all requirements";
+
+    if (!passwordsMatch) newErrors.confirmPassword = "Passwords do not match";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form valid — ready to send to backend");
+    }
+  };
 
   const consumerPoints = [
     "Access verified consumer rights guidance.",
@@ -62,35 +123,86 @@ function Register() {
                 : "Register to provide legal consultation services."}
             </p>
 
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={handleSubmit}>
               <AuthInput
                 label="Full Name"
                 type="text"
+                name="fullName"
+                value={form.fullName}
+                onChange={handleChange}
+                error={errors.fullName}
                 placeholder="Enter your full name"
               />
 
               <AuthInput
                 label="Email Address"
                 type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                error={errors.email}
                 placeholder="Enter your email"
               />
 
-              <AuthInput
-                label="Password"
-                type="password"
-                placeholder="Create your password"
-              />
+              <div className="password-wrapper">
+
+  <AuthInput
+  label="Password"
+  type={showPassword ? "text" : "password"}
+  name="password"
+  value={form.password}
+  onChange={handleChange}
+  error={errors.password}
+>
+  <button
+    type="button"
+    className="eye-icon"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+  </button>
+</AuthInput>
+
+</div>
 
               <AuthInput
                 label="Confirm Password"
                 type="password"
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={handleChange}
+                error={errors.confirmPassword}
                 placeholder="Confirm your password"
               />
 
-              {/* Hidden role field (important for backend later) */}
+              {/* ===== PASSWORD CHECKLIST ===== */}
+              <div className="password-checklist">
+                {Object.entries(passwordChecks).map(([key, valid]) => (
+                  <div
+                    key={key}
+                    className={`check-item ${valid ? "valid" : "invalid"}`}
+                  >
+                    {valid ? <CheckCircle size={16} /> : <XCircle size={16} />}
+                    <span>
+                      {key === "length" && "Minimum 8 characters"}
+                      {key === "upper" && "At least one uppercase"}
+                      {key === "lower" && "At least one lowercase"}
+                      {key === "number" && "At least one number"}
+                      {key === "special" && "At least one special character"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="strength-wrapper">
+                <div
+                  className="strength-bar"
+                  style={{ width: `${strengthPercent}%` }}
+                ></div>
+              </div>
+
               <input type="hidden" value={role} name="role" />
 
-              <AuthButton text="Create Account" />
+              <AuthButton text="Create Account" disabled={!formValid} />
 
               <p className="auth-switch">
                 Already have an account?

@@ -1,3 +1,4 @@
+import { useState } from "react"; // ✅ MISSING IMPORT
 import { Scale } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthInput from "../components/AuthInput";
@@ -7,75 +8,117 @@ import Footer from "../components/Footer";
 import "../styles/auth.css";
 
 function Login() {
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  // ✅ MISSING FUNCTION
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+
+  const passwordValid =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(form.password);
+
+  const formValid = emailValid && passwordValid;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let newErrors = {};
+
+    if (!emailValid) newErrors.email = "Enter a valid email address";
+
+    if (!passwordValid) newErrors.password = "Invalid password format";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Login form valid — ready for backend");
+    }
+  };
+
   return (
     <>
-        <Navbar />
-    <div className="auth-wrapper">
-      <div className="auth-container">
-
-        {/* LEFT SECTION */}
-        <div className="auth-left">
-          <div className="auth-brand">
-            <Scale size={32} className="brand-icon" />
-            <h1>LawAssist</h1>
-          </div>
-
-          <h2 className="auth-heading">
-            Empowering Consumer Rights with Smart Legal Support
-          </h2>
-
-          <p className="auth-description">
-            Access your dashboard, manage legal queries,
-            and connect with verified legal professionals.
-          </p>
-        </div>
-
-        {/* RIGHT SECTION */}
-        <div className="auth-right">
-
-          <h2 className="form-title">Welcome Back</h2>
-          <p className="form-subtitle">Please login to your account</p>
-
-          <form className="auth-form">
-
-            <AuthInput
-              label="Email Address"
-              type="email"
-              placeholder="Enter your email"
-            />
-
-            <AuthInput
-              label="Password"
-              type="password"
-              placeholder="Enter your password"
-            />
-
-            <div className="auth-options">
-              <label className="remember">
-                <input type="checkbox" />
-                Remember me
-              </label>
-
-              <Link to="/forgot-password" className="auth-link">
-                Forgot Password?
-              </Link>
+      <Navbar />
+      <div className="auth-wrapper">
+        <div className="auth-container">
+          {/* LEFT SECTION */}
+          <div className="auth-left">
+            <div className="auth-brand">
+              <Scale size={32} className="brand-icon" />
+              <h1>LawAssist</h1>
             </div>
 
-            <AuthButton text="Login" />
+            <h2 className="auth-heading">
+              Empowering Consumer Rights with Smart Legal Support
+            </h2>
 
-            <p className="auth-switch">
-              Don’t have an account?
-              <Link to="/register" className="auth-link">
-                Create Account
-              </Link>
+            <p className="auth-description">
+              Access your dashboard, manage legal queries, and connect with
+              verified legal professionals.
             </p>
+          </div>
 
-          </form>
+          {/* RIGHT SECTION */}
+          <div className="auth-right">
+            <h2 className="form-title">Welcome Back</h2>
+            <p className="form-subtitle">Please login to your account</p>
 
+            <form
+              className="auth-form"
+              onSubmit={handleSubmit} // ✅ ADDED
+            >
+              <AuthInput
+                label="Email Address"
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                error={errors.email}
+              />
+
+              <AuthInput
+                label="Password"
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                error={errors.password}
+              />
+
+              <div className="auth-options">
+                <label className="remember">
+                  <input type="checkbox" />
+                  Remember me
+                </label>
+
+                <Link to="/forgot-password" className="auth-link">
+                  Forgot Password?
+                </Link>
+              </div>
+
+              <AuthButton text="Login" disabled={!formValid} />
+
+              <p className="auth-switch">
+                Don’t have an account?
+                <Link to="/register" className="auth-link">
+                  Create Account
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 }
