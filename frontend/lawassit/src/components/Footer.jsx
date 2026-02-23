@@ -47,7 +47,7 @@ function Footer() {
             <h4 className="footer-heading">CONTACT</h4>
             <ul className="footer-links">
               <li>lawassist@gmail.com</li>
-              <li>Mumabi, India</li>
+              <li>Mumbai, India</li>
             </ul>
           </div>
 
