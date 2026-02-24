@@ -13,6 +13,7 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [countdown, setCountdown] = useState(3);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -20,10 +21,10 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
-  
+
   const [errors, setErrors] = useState({});
   const passwordsMatch = form.password === form.confirmPassword;
-  
+
   // ===== VALIDATIONS =====
 
   useEffect(() => {
@@ -40,6 +41,21 @@ function Register() {
     }
   }, [form.password, form.confirmPassword]);
 
+  useEffect(() => {
+    if (!showSuccess) return;
+
+    if (countdown === 0) {
+      navigate("/dashboard");
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [showSuccess, countdown, navigate]);
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -47,27 +63,26 @@ function Register() {
     });
   };
 
-useEffect(() => {
-  if (!form.email) {
-    setErrors(prev => ({ ...prev, email: "" }));
-    return;
-  }
+  useEffect(() => {
+    if (!form.email) {
+      setErrors((prev) => ({ ...prev, email: "" }));
+      return;
+    }
 
-  const valid =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
 
-  if (!valid) {
-    setErrors(prev => ({
-      ...prev,
-      email: "Please enter a valid email"
-    }));
-  } else {
-    setErrors(prev => ({
-      ...prev,
-      email: ""
-    }));
-  }
-}, [form.email]);
+    if (!valid) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "Please enter a valid email",
+      }));
+    } else {
+      setErrors((prev) => ({
+        ...prev,
+        email: "",
+      }));
+    }
+  }, [form.email]);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
 
@@ -105,8 +120,8 @@ useEffect(() => {
 
     if (Object.keys(newErrors).length === 0) {
       setShowSuccess(true);
+      setCountdown(3);
 
-      // Clear form
       setForm({
         fullName: "",
         email: "",
@@ -290,6 +305,8 @@ useEffect(() => {
                 <div className="popup-card">
                   <CheckCircle size={50} className="popup-icon" />
                   <p className="popup-text">Registration Successful!</p>
+
+                  <p className="redirect-text">Redirecting in {countdown}...</p>
                 </div>
               </div>
             )}

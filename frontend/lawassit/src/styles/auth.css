@@ -216,6 +216,10 @@
          hover:bg-blue-800 transition;
 }
 
+.redirect-text {
+  @apply text-sm text-gray-500 mt-3;
+}
+
 /* Simple fade animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }

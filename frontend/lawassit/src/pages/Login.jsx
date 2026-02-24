@@ -11,6 +11,7 @@ import "../styles/auth.css";
 function Login() {
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [countdown, setCountdown] = useState(3);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -26,39 +27,53 @@ function Login() {
   };
 
   useEffect(() => {
-  if (!form.email) {
-    setErrors(prev => ({ ...prev, email: "" }));
-  } else if (
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
-  ) {
-    setErrors(prev => ({
-      ...prev,
-      email: "Please enter a valid email"
-    }));
-  } else {
-    setErrors(prev => ({
-      ...prev,
-      email: ""
-    }));
-  }
+    if (!form.email) {
+      setErrors((prev) => ({ ...prev, email: "" }));
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "Please enter a valid email",
+      }));
+    } else {
+      setErrors((prev) => ({
+        ...prev,
+        email: "",
+      }));
+    }
 
-  if (!form.password) {
-    setErrors(prev => ({ ...prev, password: "" }));
-  } else if (
-    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
-      .test(form.password)
-  ) {
-    setErrors(prev => ({
-      ...prev,
-      password: "Please enter a valid password"
-    }));
-  } else {
-    setErrors(prev => ({
-      ...prev,
-      password: ""
-    }));
-  }
-}, [form.email, form.password]);
+    if (!form.password) {
+      setErrors((prev) => ({ ...prev, password: "" }));
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(
+        form.password,
+      )
+    ) {
+      setErrors((prev) => ({
+        ...prev,
+        password: "Please enter a valid password",
+      }));
+    } else {
+      setErrors((prev) => ({
+        ...prev,
+        password: "",
+      }));
+    }
+  }, [form.email, form.password]);
+
+  useEffect(() => {
+    if (!showSuccess) return;
+
+    if (countdown === 0) {
+      navigate("/dashboard");
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [showSuccess, countdown, navigate]);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
 
@@ -80,6 +95,7 @@ function Login() {
 
     if (Object.keys(newErrors).length === 0) {
       setShowSuccess(true);
+      setCountdown(3);
 
       setForm({
         email: "",
@@ -166,6 +182,8 @@ function Login() {
                 <div className="popup-card">
                   <CheckCircle size={50} className="popup-icon" />
                   <p className="popup-text">Login Successful!</p>
+
+                  <p className="redirect-text">Redirecting in {countdown}...</p>
                 </div>
               </div>
             )}
