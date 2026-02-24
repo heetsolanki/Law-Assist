@@ -20,11 +20,12 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
-
+  
   const [errors, setErrors] = useState({});
   const passwordsMatch = form.password === form.confirmPassword;
+  
+  // ===== VALIDATIONS =====
 
-  // 👇 ADD useEffect HERE
   useEffect(() => {
     if (form.confirmPassword && form.password !== form.confirmPassword) {
       setErrors((prev) => ({
@@ -46,7 +47,27 @@ function Register() {
     });
   };
 
-  // ===== VALIDATIONS =====
+useEffect(() => {
+  if (!form.email) {
+    setErrors(prev => ({ ...prev, email: "" }));
+    return;
+  }
+
+  const valid =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+
+  if (!valid) {
+    setErrors(prev => ({
+      ...prev,
+      email: "Please enter a valid email"
+    }));
+  } else {
+    setErrors(prev => ({
+      ...prev,
+      email: ""
+    }));
+  }
+}, [form.email]);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
 

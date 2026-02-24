@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Scale, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -18,13 +18,47 @@ function Login() {
 
   const [errors, setErrors] = useState({});
 
-  // ✅ MISSING FUNCTION
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
+
+  useEffect(() => {
+  if (!form.email) {
+    setErrors(prev => ({ ...prev, email: "" }));
+  } else if (
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
+  ) {
+    setErrors(prev => ({
+      ...prev,
+      email: "Please enter a valid email"
+    }));
+  } else {
+    setErrors(prev => ({
+      ...prev,
+      email: ""
+    }));
+  }
+
+  if (!form.password) {
+    setErrors(prev => ({ ...prev, password: "" }));
+  } else if (
+    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
+      .test(form.password)
+  ) {
+    setErrors(prev => ({
+      ...prev,
+      password: "Please enter a valid password"
+    }));
+  } else {
+    setErrors(prev => ({
+      ...prev,
+      password: ""
+    }));
+  }
+}, [form.email, form.password]);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
 
