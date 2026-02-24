@@ -28,6 +28,7 @@ function Home() {
   return (
     <>
       <Navbar />
+      
 
       {/* HERO SECTION */}
       <section className="hero-section fade-up">
@@ -80,11 +81,11 @@ function Home() {
         <div className="container-custom">
           {/* Section Heading */}
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-[#0A1F44]">
+            <h2 className="section-title">
               Our Key Features
             </h2>
 
-            <p className="mt-4 text-gray-600 text-lg">
+            <p className="section-subtitle">
               Everything you need to navigate consumer rights and get the legal
               help you deserve.
             </p>
@@ -164,9 +165,9 @@ function Home() {
       <section className="how-section fade-up">
         <div className="container-custom text-center">
           {/* Heading */}
-          <h2 className="text-3xl font-bold text-[#0A1F44]">How It Works</h2>
+          <h2 className="section-title">How It Works</h2>
 
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="section-subtitle">
             Four simple steps to get the legal help you need.
           </p>
 
@@ -231,11 +232,11 @@ function Home() {
         <div className="container-custom">
           {/* Heading */}
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-[#0A1F44]">
+            <h2 className="section-title">
               Consumer Rights Categories
             </h2>
 
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="section-subtitle">
               Select a category to learn about your rights and find relevant
               legal guidance.
             </p>
