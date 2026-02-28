@@ -228,6 +228,26 @@ function Register() {
                   </button>
                 </AuthInput>
               </div>
+              {/* ===== PASSWORD CHECKLIST ===== */}
+              {form.password && (
+                <div className="password-checklist">
+                  {Object.entries(passwordChecks)
+                    .filter(([_, valid]) => !valid) // only invalid rules
+                    .map(([key]) => (
+                      <div key={key} className="check-item invalid">
+                        <XCircle size={16} />
+                        <span>
+                          {key === "length" && "Minimum 8 characters"}
+                          {key === "upper" && "At least one uppercase"}
+                          {key === "lower" && "At least one lowercase"}
+                          {key === "number" && "At least one number"}
+                          {key === "special" &&
+                            "At least one special character"}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              )}
 
               <AuthInput
                 label="Confirm Password"
@@ -238,25 +258,6 @@ function Register() {
                 error={errors.confirmPassword}
                 placeholder="Confirm your password"
               />
-
-              {/* ===== PASSWORD CHECKLIST ===== */}
-              <div className="password-checklist">
-                {Object.entries(passwordChecks).map(([key, valid]) => (
-                  <div
-                    key={key}
-                    className={`check-item ${valid ? "valid" : "invalid"}`}
-                  >
-                    {valid ? <CheckCircle size={16} /> : <XCircle size={16} />}
-                    <span>
-                      {key === "length" && "Minimum 8 characters"}
-                      {key === "upper" && "At least one uppercase"}
-                      {key === "lower" && "At least one lowercase"}
-                      {key === "number" && "At least one number"}
-                      {key === "special" && "At least one special character"}
-                    </span>
-                  </div>
-                ))}
-              </div>
               <div className="strength-wrapper">
                 <div
                   className="strength-bar"
@@ -270,7 +271,15 @@ function Register() {
 
               <p className="auth-switch">
                 Already have an account?
-                <Link to="/login" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}> Login</Link>
+                <Link
+                  to="/login"
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
+                >
+                  {" "}
+                  Login
+                </Link>
               </p>
             </form>
           </div>
