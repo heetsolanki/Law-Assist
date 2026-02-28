@@ -8,7 +8,6 @@ import {
   FileText,
   Users,
   MessageSquare,
-  UploadCloud,
   Search,
   LayoutDashboard,
   ClipboardList,
@@ -23,6 +22,129 @@ import {
 } from "lucide-react";
 
 import useScrollReveal from "../hooks/useScrollReveal";
+import BackToTopButton from "../components/BackToTopButton";
+
+const miniCards = [
+  {
+    id: 1,
+    icon: <Scale size={30} />,
+    title: "Justice",
+  },
+  {
+    id: 2,
+    icon: <Shield size={30} />,
+    title: "Protection",
+  },
+  {
+    id: 3,
+    icon: <FileText size={30} />,
+    title: "Documents",
+  },
+  {
+    id: 4,
+    icon: <Users size={30} />,
+    title: "Experts",
+  },
+];
+
+const features = [
+  {
+    id: 1,
+    icon: <MessageSquare size={22} />,
+    title: "Submit Legal Query",
+    text: "Easily submit your consumer complaints and legal questions through our streamlined form.",
+  },
+  {
+    id: 2,
+    icon: <Upload size={22} />,
+    title: "Upload Documents",
+    text: "Easily upload and manage your legal documents securely.",
+  },
+  {
+    id: 3,
+    icon: <ShieldCheck size={22} />,
+    title: "Secure Storage",
+    text: "All your documents are securely stored and protected.",
+  },
+  {
+    id: 4,
+    icon: <Search size={22} />,
+    title: "Search Legal Resources",
+    text: "Find relevant legal resources and information quickly.",
+  },
+  {
+    id: 5,
+    icon: <LayoutDashboard size={22} />,
+    title: "Dashboard Overview",
+    text: "View your legal queries and documents in one centralized dashboard.",
+  },
+  {
+    id: 6,
+    icon: <ClipboardList size={22} />,
+    title: "Track Legal Progress",
+    text: "Monitor the status of your legal queries and documents.",
+  },
+];
+
+const steps = [
+  {
+    id: 1,
+    icon: <UserPlus size={22} />,
+    title: "Register / Login",
+    text: "Create your secure account to get started with LawAssist.",
+  },
+  {
+    id: 2,
+    icon: <FileText size={22} />,
+    title: "Submit Complaint",
+    text: "Describe your consumer issue using our guided query form.",
+  },
+  {
+    id: 3,
+    icon: <Upload size={22} />,
+    title: "Upload Documents",
+    text: "Attach supporting evidence like receipts and contracts.",
+  },
+  {
+    id: 4,
+    icon: <Gavel size={22} />,
+    title: "Get Expert Guidance",
+    text: "Receive personalized legal advice from verified experts.",
+  },
+];
+
+const categories = [
+  {
+    id: 1,
+    icon: <ShoppingCart size={22} />,
+    title: "E-commerce & Online Shopping",
+    text: "Disputes with online purchases, refunds, and delivery issues.",
+  },
+  {
+    id: 2,
+    icon: <Landmark size={22} />,
+    title: "Banking & Financial Issues",
+    text: "Unfair charges, loan disputes, and financial fraud complaints.",
+  },
+  {
+    id: 3,
+    icon: <Package size={22} />,
+    title: "Product Defects",
+    text: "Manufacturing defects, warranty claims, and faulty goods.",
+  },
+  {
+    id: 4,
+    icon: <ShieldCheck size={22} />,
+    title: "Insurance Complaints",
+    text: "Claim rejections, delays, and unfair policy practices.",
+  },
+  {
+    id: 5,
+    icon: <Building size={22} />,
+    title: "Real Estate Issues",
+    text: "Property disputes, builder defaults, and tenant rights.",
+  },
+];
 
 function Home() {
   useScrollReveal();
@@ -38,12 +160,10 @@ function Home() {
             <h1 className="hero-title">
               Know Your Consumer Rights. Get Legal Help Instantly.
             </h1>
-
             <p className="hero-text">
               Submit complaints, connect with legal experts, and navigate your
               rights with confidence.
             </p>
-
             <div className="hero-buttons">
               <button className="home-btn-primary">Submit a Query</button>
 
@@ -53,25 +173,14 @@ function Home() {
 
           {/* RIGHT MINI CARDS */}
           <div className="hero-grid">
-            <div className="hero-card">
-              <Scale size={30} />
-              <h3 className="mt-3 font-semibold text-[#0A1F44]">Justice</h3>
-            </div>
-
-            <div className="hero-card">
-              <Shield size={30} />
-              <h3 className="mt-3 font-semibold text-[#0A1F44]">Protection</h3>
-            </div>
-
-            <div className="hero-card">
-              <FileText size={30} />
-              <h3 className="mt-3 font-semibold text-[#0A1F44]">Documents</h3>
-            </div>
-
-            <div className="hero-card">
-              <Users size={30} />
-              <h3 className="mt-3 font-semibold text-[#0A1F44]">Experts</h3>
-            </div>
+            {miniCards.map((card) => (
+              <div key={card.id} className="hero-card">
+                {card.icon}
+                <h3 className="mt-3 font-semibold text-[#0A1F44]">
+                  {card.title}
+                </h3>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -82,7 +191,7 @@ function Home() {
           {/* Section Heading */}
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="section-title">Our Key Features</h2>
-
+            <div className="section-underline"></div>
             <p className="section-subtitle">
               Everything you need to navigate consumer rights and get the legal
               help you deserve.
@@ -91,70 +200,13 @@ function Home() {
 
           {/* Features Grid */}
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">
-                <MessageSquare size={22} />
+            {features.map((feature) => (
+              <div key={feature.id} className="feature-card">
+                <div className="feature-icon">{feature.icon}</div>
+                <h3 className="feature-title">{feature.title}</h3>
+                <p className="feature-text">{feature.text}</p>
               </div>
-              <h3 className="feature-title">Submit Legal Query</h3>
-              <p className="feature-text">
-                Easily submit your consumer complaints and legal questions
-                through our streamlined form.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <UploadCloud size={22} />
-              </div>
-              <h3 className="feature-title">Upload Supporting Documents</h3>
-              <p className="feature-text">
-                Attach receipts, contracts, or any evidence to strengthen your
-                case.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Users size={22} />
-              </div>
-              <h3 className="feature-title">Expert Consultation</h3>
-              <p className="feature-text">
-                Connect with verified legal professionals who specialize in
-                consumer rights.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Search size={22} />
-              </div>
-              <h3 className="feature-title">Smart Legal Search</h3>
-              <p className="feature-text">
-                Search through our comprehensive database of consumer laws and
-                precedents.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <LayoutDashboard size={22} />
-              </div>
-              <h3 className="feature-title">Secure Dashboard</h3>
-              <p className="feature-text">
-                Manage all your queries, documents, and consultations from one
-                secure dashboard.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <ClipboardList size={22} />
-              </div>
-              <h3 className="feature-title">Track Complaint Status</h3>
-              <p className="feature-text">
-                Stay updated with real-time tracking of your complaint progress.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -164,63 +216,22 @@ function Home() {
         <div className="container-custom text-center">
           {/* Heading */}
           <h2 className="section-title">How It Works</h2>
-
+          <div className="section-underline"></div>
           <p className="section-subtitle">
             Four simple steps to get the legal help you need.
           </p>
-
           {/* Steps */}
           <div className="how-grid">
             {/* Horizontal line */}
             <div className="how-line"></div>
-
-            {/* Step 1 */}
-            <div className="relative">
-              <div className="how-number">1</div>
-              <div className="how-icon">
-                <UserPlus size={22} />
+            {steps.map((step) => (
+              <div key={step.id} className="relative">
+                <div className="how-number">{step.id}</div>
+                <div className="how-icon">{step.icon}</div>
+                <h3 className="how-title">{step.title}</h3>
+                <p className="how-text">{step.text}</p>
               </div>
-              <h3 className="how-title">Register / Login</h3>
-              <p className="how-text">
-                Create your secure account to get started with LawAssist.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="relative">
-              <div className="how-number">2</div>
-              <div className="how-icon">
-                <FileText size={22} />
-              </div>
-              <h3 className="how-title">Submit Complaint</h3>
-              <p className="how-text">
-                Describe your consumer issue using our guided query form.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="relative">
-              <div className="how-number">3</div>
-              <div className="how-icon">
-                <Upload size={22} />
-              </div>
-              <h3 className="how-title">Upload Documents</h3>
-              <p className="how-text">
-                Attach supporting evidence like receipts and contracts.
-              </p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="relative">
-              <div className="how-number">4</div>
-              <div className="how-icon">
-                <Gavel size={22} />
-              </div>
-              <h3 className="how-title">Get Expert Guidance</h3>
-              <p className="how-text">
-                Receive personalized legal advice from verified experts.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -231,73 +242,25 @@ function Home() {
           {/* Heading */}
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="section-title">Consumer Rights Categories</h2>
-
+            <div className="section-underline"></div>
             <p className="section-subtitle">
               Select a category to learn about your rights and find relevant
               legal guidance.
             </p>
           </div>
-
           {/* Grid */}
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">
-                <ShoppingCart size={22} />
+            {categories.map((category) => (
+              <div key={category.id} className="feature-card">
+                <div className="feature-icon">{category.icon}</div>
+                <h3 className="feature-title">{category.title}</h3>
+                <p className="feature-text">{category.text}</p>
               </div>
-              <h3 className="feature-title">E-commerce & Online Shopping</h3>
-              <p className="feature-text">
-                Disputes with online purchases, refunds, and delivery issues.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Landmark size={22} />
-              </div>
-              <h3 className="feature-title">Banking & Financial Issues</h3>
-              <p className="feature-text">
-                Unfair charges, loan disputes, and financial fraud complaints.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Package size={22} />
-              </div>
-              <h3 className="feature-title">Product Defects</h3>
-              <p className="feature-text">
-                Manufacturing defects, warranty claims, and faulty goods.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <ShieldCheck size={22} />
-              </div>
-              <h3 className="feature-title">Insurance Complaints</h3>
-              <p className="feature-text">
-                Claim rejections, delays, and unfair policy practices.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">
-                <Building size={22} />
-              </div>
-              <h3 className="feature-title">Real Estate Issues</h3>
-              <p className="feature-text">
-                Property disputes, builder defaults, and tenant rights.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-      <button
-        className="user-floating-btn"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <ArrowUp size={22} />
-      </button>
+      <BackToTopButton />
 
       <Footer />
     </>

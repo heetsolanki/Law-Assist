@@ -5,15 +5,6 @@
 .section-padding {
   @apply py-24;
 }
-
-.section-title {
-  @apply text-3xl font-bold text-[#0A1F44];
-}
-
-.section-subtitle {
-  @apply mt-4 text-lg text-gray-600 max-w-2xl mx-auto text-center;
-}
-
 /* HERO */
 
 .hero-section {
@@ -54,36 +45,6 @@
 
 .hero-card svg {
   @apply w-10 h-10 text-[#0A1F44] mb-4;
-}
-
-/* FEATURES */
-
-.features-section {
-  @apply bg-[#f6f8fb] section-padding;
-}
-
-.features-grid {
-  @apply container-custom grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16;
-}
-
-.feature-card {
-  @apply bg-white px-10 py-8 rounded-2xl border border-gray-400 shadow-sm transition hover:border-[#C9A227] hover:shadow-lg;
-}
-
-.feature-icon {
-  @apply w-12 h-12 rounded-xl bg-gray-200 flex items-center justify-center mb-6 transition;
-}
-
-.feature-card:hover .feature-icon {
-  @apply bg-[#0A1F44] text-white translate-y-[-4px];
-}
-
-.feature-title {
-  @apply text-lg font-semibold text-[#0A1F44] mb-2;
-}
-
-.feature-text {
-  @apply text-sm text-gray-600 leading-relaxed;
 }
 
 /* HOW IT WORKS */

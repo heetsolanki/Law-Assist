@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MapPin, Star, Briefcase, IndianRupee, ArrowUp } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import BackToTopButton from "../components/BackToTopButton";
 import "../styles/experts.css";
 
 const experts = [
@@ -98,12 +99,7 @@ const Experts = () => {
           </div>
         </div>
       </div>
-      <button
-        className="user-floating-btn"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <ArrowUp size={22} />
-      </button>
+      <BackToTopButton />
 
       <Footer />
     </>

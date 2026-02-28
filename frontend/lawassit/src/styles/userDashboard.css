@@ -222,16 +222,6 @@
   @apply mt-2;
 }
 
-/* ================= FLOATING BUTTON ================= */
-
-.user-floating-btn {
-  @apply fixed bottom-8 right-8 bg-[#1E3A8A] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition duration-300;
-}
-
-.user-floating-btn:hover {
-  @apply bg-[#162f6a] shadow-xl scale-105;
-}
-
 /* ================= DISCLAIMER ================= */
 
 .user-dashboard-disclaimer {
@@ -240,10 +230,4 @@
 
 .user-dashboard-disclaimer:hover {
   @apply text-gray-500;
-}
-
-@media (max-width: 768px) {
-  .user-floating-btn {
-    @apply w-12 h-12
-  }
 }

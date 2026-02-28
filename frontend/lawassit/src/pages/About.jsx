@@ -1,6 +1,7 @@
 import { ArrowUp } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import BackToTopButton from "../components/BackToTopButton";
 import "../styles/about.css";
 import {
   Scale,
@@ -20,6 +21,72 @@ import {
   Linkedin,
   Github,
 } from "lucide-react";
+
+const missions = [
+  {
+    id: 1,
+    icon: <Lightbulb />,
+    title: "Simplify Legal Access",
+    text: "Break down complex legal processes into simple, actionable steps for every consumer.",
+  },
+  {
+    id: 2,
+    icon: <Eye />,
+    title: "Increase Consumer Awareness",
+    text: "Educate users about their fundamental rights through accessible resources and guidance.",
+  },
+  {
+    id: 3,
+    icon: <ClipboardList />,
+    title: "Structured Query Management",
+    text: "Provide an organized system to submit, track, and resolve legal queries efficiently.",
+  },
+  {
+    id: 4,
+    icon: <Lock />,
+    title: "Secure Document Handling",
+    text: "Ensure all uploaded documents and personal data are handled with industry-grade security.",
+  },
+];
+
+const offers = [
+  {
+    id: 1,
+    icon: <Shield />,
+    title: "Secure User Accounts",
+    text: "Protected sign-up and login with encrypted credentials.",
+  },
+  {
+    id: 2,
+    icon: <MessageSquare />,
+    title: "Submit Legal Queries",
+    text: "Easy-to-use form to describe your consumer complaint.",
+  },
+  {
+    id: 3,
+    icon: <Upload />,
+    title: "Upload Supporting Documents",
+    text: "Attach invoices, receipts, and evidence securely.",
+  },
+  {
+    id: 4,
+    icon: <Activity />,
+    title: "Track Query Status",
+    text: "Real-time updates on the progress of your complaint.",
+  },
+  {
+    id: 5,
+    icon: <Users />,
+    title: "Expert Panel Access",
+    text: "Connect with verified legal professionals for guidance.",
+  },
+  {
+    id: 6,
+    icon: <Search />,
+    title: "Smart Legal Search",
+    text: "Search consumer laws, acts, and legal precedents instantly.",
+  },
+];
 
 function About() {
   return (
@@ -67,16 +134,14 @@ function About() {
           <div className="who-layout">
             {/* LEFT CONTENT */}
             <div>
-              <h2 className="who-title">Who We Are</h2>
+              <h2 className="section-title">Who We Are</h2>
               <div className="who-underline"></div>
-
               <p className="who-text">
                 LawAssist is a consumer-rights-focused legal help platform that
                 allows users to submit legal queries, upload documents, and
                 track responses in an organized system. We bridge the gap
                 between consumers and the legal support they need.
               </p>
-
               <p className="who-text">
                 Our platform is designed with simplicity in mind, ensuring that
                 anyone can navigate the complexities of consumer law without
@@ -89,9 +154,7 @@ function About() {
               <div className="who-card-icon">
                 <ShieldCheck />
               </div>
-
               <h3 className="who-card-title">Focused on Consumer Protection</h3>
-
               <p className="who-card-text">
                 Every feature we build is centered around empowering consumers
                 to understand and exercise their legal rights with confidence
@@ -113,53 +176,13 @@ function About() {
             </p>
 
             <div className="mission-grid">
-              <div className="mission-card">
-                <div className="mission-icon-box">
-                  <Lightbulb />
+              {missions.map((mission) => (
+                <div key={mission.id} className="mission-card">
+                  <div className="mission-icon-box">{mission.icon}</div>
+                  <h3 className="mission-card-title">{mission.title}</h3>
+                  <p className="mission-card-text">{mission.text}</p>
                 </div>
-                <h3 className="mission-card-title">Simplify Legal Access</h3>
-                <p className="mission-card-text">
-                  Break down complex legal processes into simple, actionable
-                  steps for every consumer.
-                </p>
-              </div>
-
-              <div className="mission-card">
-                <div className="mission-icon-box">
-                  <Eye />
-                </div>
-                <h3 className="mission-card-title">
-                  Increase Consumer Awareness
-                </h3>
-                <p className="mission-card-text">
-                  Educate users about their fundamental rights through
-                  accessible resources and guidance.
-                </p>
-              </div>
-
-              <div className="mission-card">
-                <div className="mission-icon-box">
-                  <ClipboardList />
-                </div>
-                <h3 className="mission-card-title">
-                  Structured Query Management
-                </h3>
-                <p className="mission-card-text">
-                  Provide an organized system to submit, track, and resolve
-                  legal queries efficiently.
-                </p>
-              </div>
-
-              <div className="mission-card">
-                <div className="mission-icon-box">
-                  <Lock />
-                </div>
-                <h3 className="mission-card-title">Secure Document Handling</h3>
-                <p className="mission-card-text">
-                  Ensure all uploaded documents and personal data are handled
-                  with industry-grade security.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -167,82 +190,30 @@ function About() {
         {/* WHAT WE OFFER */}
         <section className="offer-section">
           <div className="container-custom">
-            <h2 className="offer-title">What We Offer</h2>
-            <div className="offer-underline"></div>
+            <h2 className="section-title">What We Offer</h2>
+            <div className="section-underline"></div>
 
-            <p className="offer-subtitle">
+            <p className="section-subtitle">
               A comprehensive suite of tools designed to help you navigate
               consumer rights with ease.
             </p>
 
             <div className="offer-grid">
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <Shield />
+              {offers.map((offer) => (
+                <div key={offer.id} className="feature-card">
+                  <div className="feature-icon">{offer.icon}</div>
+                  <h3 className="feature-title">{offer.title}</h3>
+                  <p className="feature-text">{offer.text}</p>
                 </div>
-                <h3 className="feature-title">Secure User Accounts</h3>
-                <p className="feature-text">
-                  Protected sign-up and login with encrypted credentials.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <MessageSquare />
-                </div>
-                <h3 className="feature-title">Submit Legal Queries</h3>
-                <p className="feature-text">
-                  Easy-to-use form to describe your consumer complaint.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <Upload />
-                </div>
-                <h3 className="feature-title">Upload Supporting Documents</h3>
-                <p className="feature-text">
-                  Attach invoices, receipts, and evidence securely.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <Activity />
-                </div>
-                <h3 className="feature-title">Track Query Status</h3>
-                <p className="feature-text">
-                  Real-time updates on the progress of your complaint.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <Users />
-                </div>
-                <h3 className="feature-title">Expert Panel Access</h3>
-                <p className="feature-text">
-                  Connect with verified legal professionals for guidance.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">
-                  <Search />
-                </div>
-                <h3 className="feature-title">Smart Legal Search</h3>
-                <p className="feature-text">
-                  Search consumer laws, acts, and legal precedents instantly.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* DEVELOPER SECTION */}
         <section className="dev-section">
-          <h2 className="dev-title">About the Developers</h2>
-          <div className="dev-underline"></div>
+          <h2 className="section-title">About the Developers</h2>
+          <div className="section-underline"></div>
 
           <div className="dev-layout">
             {/* LEFT SIDE */}
@@ -317,12 +288,7 @@ function About() {
           </div>
         </section>
       </main>
-      <button
-        className="user-floating-btn"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <ArrowUp size={22} />
-      </button>
+      <BackToTopButton />
 
       <Footer />
     </>

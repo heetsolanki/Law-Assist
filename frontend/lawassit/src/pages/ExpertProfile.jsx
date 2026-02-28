@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/expertProfile.css";
+import BackToTopButton from "../components/BackToTopButton";
 
 const ExpertProfile = () => {
   const navigate = useNavigate();
@@ -128,12 +129,7 @@ const ExpertProfile = () => {
           </div>
         </div>
       </div>
-      <button
-        className="user-floating-btn"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <ArrowUp size={22} />
-      </button>
+      <BackToTopButton />
 
       <Footer />
     </>
