@@ -270,7 +270,7 @@ function Register() {
 
               <p className="auth-switch">
                 Already have an account?
-                <Link to="/login"> Login</Link>
+                <Link to="/login" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}> Login</Link>
               </p>
             </form>
           </div>

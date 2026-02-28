@@ -143,6 +143,7 @@ function Login() {
                 label="Email Address"
                 type="email"
                 name="email"
+                placeholder="Enter your email"
                 value={form.email}
                 onChange={handleChange}
                 error={errors.email}
@@ -152,6 +153,7 @@ function Login() {
                 label="Password"
                 type="password"
                 name="password"
+                placeholder="Enter your password"
                 value={form.password}
                 onChange={handleChange}
                 error={errors.password}
@@ -163,7 +165,7 @@ function Login() {
                   Remember me
                 </label>
 
-                <Link to="/forgot-password" className="auth-link">
+                <Link to="/forgot-password" className="auth-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   Forgot Password?
                 </Link>
               </div>
@@ -172,7 +174,7 @@ function Login() {
 
               <p className="auth-switch">
                 Don’t have an account?
-                <Link to="/register" className="auth-link">
+                <Link to="/register" className="auth-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   Create Account
                 </Link>
               </p>
