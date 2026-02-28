@@ -18,8 +18,20 @@ function Navbar() {
           >
             Home
           </Link>
-          <span className="nav-link">Explore Rights</span>
-          <span className="nav-link">Submit Query</span>
+          <Link
+            to="/explore-rights"
+            className="nav-link"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Explore Rights
+          </Link>
+          <Link
+            to="/queries"
+            className="nav-link"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Queries
+          </Link>
         </div>
 
         {/* LOGO */}
@@ -33,7 +45,13 @@ function Navbar() {
 
         {/* RIGHT LINKS */}
         <div className="nav-links">
-          <Link to="/experts" className="nav-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Experts</Link>
+          <Link
+            to="/experts"
+            className="nav-link"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Experts
+          </Link>
           <Link
             to="/about"
             className="nav-link"
@@ -77,8 +95,26 @@ function Navbar() {
         >
           Home
         </Link>
-        <span className="nav-link">Explore Rights</span>
-        <span className="nav-link">Submit Query</span>
+        <Link
+          to="/explore-rights"
+          onClick={() => {
+            setIsOpen(false);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="nav-link"
+        >
+          Explore Rights
+        </Link>
+        <Link
+          to="/queries"
+          onClick={() => {
+            setIsOpen(false);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="nav-link"
+        >
+          Queries
+        </Link>
         <Link
           to="/experts"
           className="nav-link"

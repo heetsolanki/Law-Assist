@@ -10,6 +10,8 @@ import UserDashboard from "./pages/UserDashboard";
 import LegalExpertDashboard from "./pages/LegalExpertDashboard";
 import Experts from "./pages/Experts";
 import ExpertProfile from "./pages/ExpertProfile";
+import ExploreRights from "./pages/ExploreRights";
+import Queries from "./pages/Queries";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/legal-expert-dashboard" element={<LegalExpertDashboard />} />
         <Route path="/experts" element={<Experts />} />
         <Route path="/expert-profile" element={<ExpertProfile />} />
+        <Route path="/explore-rights" element={<ExploreRights />} />
+        <Route path="/queries" element={<Queries />} />
       </Routes>
     </Router>
   );
