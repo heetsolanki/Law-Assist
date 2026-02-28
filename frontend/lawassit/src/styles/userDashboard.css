@@ -241,3 +241,9 @@
 .user-dashboard-disclaimer:hover {
   @apply text-gray-500;
 }
+
+@media (max-width: 768px) {
+  .user-floating-btn {
+    @apply w-12 h-12
+  }
+}

@@ -149,3 +149,11 @@
 .full {
   @apply w-full;
 }
+
+.back-btn {
+  @apply text-[#1e3a8a] font-semibold cursor-pointer text-base transition-all duration-200 flex items-center gap-1 mb-6;
+}
+
+.back-btn:hover {
+  @apply text-yellow-500;
+}

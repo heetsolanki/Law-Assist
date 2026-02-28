@@ -1,3 +1,4 @@
+import { ArrowUp } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/home.css";
@@ -28,7 +29,6 @@ function Home() {
   return (
     <>
       <Navbar />
-      
 
       {/* HERO SECTION */}
       <section className="hero-section fade-up">
@@ -81,9 +81,7 @@ function Home() {
         <div className="container-custom">
           {/* Section Heading */}
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="section-title">
-              Our Key Features
-            </h2>
+            <h2 className="section-title">Our Key Features</h2>
 
             <p className="section-subtitle">
               Everything you need to navigate consumer rights and get the legal
@@ -232,9 +230,7 @@ function Home() {
         <div className="container-custom">
           {/* Heading */}
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="section-title">
-              Consumer Rights Categories
-            </h2>
+            <h2 className="section-title">Consumer Rights Categories</h2>
 
             <p className="section-subtitle">
               Select a category to learn about your rights and find relevant
@@ -296,6 +292,12 @@ function Home() {
           </div>
         </div>
       </section>
+      <button
+        className="user-floating-btn"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        <ArrowUp size={22} />
+      </button>
 
       <Footer />
     </>

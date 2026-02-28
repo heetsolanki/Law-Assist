@@ -1,3 +1,4 @@
+import { ArrowUp } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/about.css";
@@ -316,6 +317,12 @@ function About() {
           </div>
         </section>
       </main>
+      <button
+        className="user-floating-btn"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        <ArrowUp size={22} />
+      </button>
 
       <Footer />
     </>

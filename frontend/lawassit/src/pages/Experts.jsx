@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Star, Briefcase, IndianRupee } from "lucide-react";
+import { MapPin, Star, Briefcase, IndianRupee, ArrowUp } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/experts.css";
@@ -45,14 +45,12 @@ const Experts = () => {
 
       <div className="experts-wrapper">
         <div className="experts-container">
-          
           {/* Header */}
           <div className="experts-header">
-            <h1 className="experts-title">
-              Meet Our Legal Experts
-            </h1>
+            <h1 className="experts-title">Meet Our Legal Experts</h1>
             <p className="experts-subtitle">
-              Connect with verified legal professionals specializing in consumer rights and dispute resolution.
+              Connect with verified legal professionals specializing in consumer
+              rights and dispute resolution.
             </p>
           </div>
 
@@ -60,15 +58,12 @@ const Experts = () => {
           <div className="experts-grid">
             {experts.map((expert) => (
               <div key={expert.id} className="expert-card">
-                
                 <div className="expert-card-header">
                   <h2 className="expert-name">{expert.name}</h2>
                   <span className="verified-badge">Verified</span>
                 </div>
 
-                <p className="expert-specialization">
-                  {expert.specialization}
-                </p>
+                <p className="expert-specialization">{expert.specialization}</p>
 
                 <div className="expert-info">
                   <div className="info-item">
@@ -96,17 +91,19 @@ const Experts = () => {
                   <Link to="/expert-profile" className="btn-outline">
                     View Profile
                   </Link>
-                  <button className="btn-primary">
-                    Send Query
-                  </button>
+                  <button className="btn-primary">Send Query</button>
                 </div>
-
               </div>
             ))}
           </div>
-
         </div>
       </div>
+      <button
+        className="user-floating-btn"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        <ArrowUp size={22} />
+      </button>
 
       <Footer />
     </>
