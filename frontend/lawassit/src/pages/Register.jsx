@@ -45,7 +45,7 @@ function Register() {
     if (!showSuccess) return;
 
     if (countdown === 0) {
-      navigate("/dashboard");
+      navigate("/login");
       return;
     }
 
@@ -157,10 +157,6 @@ function Register() {
           password: "",
           confirmPassword: "",
         });
-
-        setTimeout(() => {
-          navigate("/login");
-        }, 3000);
       } catch (error) {
         console.error("Registration error:", error);
       }
@@ -199,8 +195,8 @@ function Register() {
               </button>
 
               <button
-                className={`role-btn ${role === "expert" ? "active-role" : ""}`}
-                onClick={() => setRole("expert")}
+                className={`role-btn ${role === "legalExpert" ? "active-role" : ""}`}
+                onClick={() => setRole("legalExpert")}
                 type="button"
               >
                 Legal Expert
