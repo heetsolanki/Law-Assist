@@ -367,5 +367,6 @@ function Register() {
     </>
   );
 }
+console.log("NEW BUILD ACTIVE");
 
 export default Register;
